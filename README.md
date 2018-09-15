@@ -9,4 +9,4 @@ See how I shaded counties based on cesarean section rate in
 
 Here is an example of a map you can quickly make:
 
-![us_map](http://url/to/img.png)
+![us_map](https://github.com/smitsrr/tiger_ggplot/blob/master/counties_map.jpeg)
