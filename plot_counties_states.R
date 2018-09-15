@@ -1,8 +1,6 @@
 library(ggplot2)
 library(shiny)
-
-    # set your working directory
-setwd("C:/Users/smits/Documents/GitHub/delivery_method/wonder_data_extracts")
+library(rgdal)
 
     # use the TIGER dataset from the census to draw the state outlines
     # http://www2.census.gov/geo/tiger/GENZ2016/shp/cb_2016_us_state_5m.zip
@@ -24,9 +22,11 @@ us.counties<- us.counties[!us.counties$STATEFP %in% exclude_states,]
 us_counties<-fortify(us.counties)
 
 p<-ggplot()+
-  geom_polygon(data = us_counties, aes(x=long,y=lat, group = group), color = "black", fill = "white")+
-  geom_polygon(data = us_states, aes(x=long, y=lat, group = group), color = "red", fill = NA)
-p + theme_void() ## show the map without a graph-looking background
+  geom_polygon(data = us_counties, aes(x=long,y=lat, group = group), color = "grey", fill = "white")+
+  geom_polygon(data = us_states, aes(x=long, y=lat, group = group), color = "black", fill = NA) +
+  coord_map(projection = "polyconic") +  ## Get fancy using your projection of choice:
+  theme_void()  ## show the map without a graph-looking background
+p
 
     # If you want to shade the counties/states by a variable, you'll
     # just join your data to the shape data frames and then set fill = variable_of_interest
